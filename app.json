@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "592ff420-e889-4662-a84d-ab56928b20a6"
+      }
+    },
+    "android": {
+      "package": "com.yashkapure.reactnativeui"
+    }
+  }
+}
