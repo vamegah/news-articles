@@ -14,7 +14,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function FavoriteArticleScreen() {
+export default function FavoriteScreen() {
   const navigation = useNavigation();
 
   // Assuming you have a similar structure for articles in your Redux store
@@ -46,7 +46,7 @@ export default function FavoriteArticleScreen() {
   return (
     <>
       {/* Heading */}
-      <View>
+      <View testID="FavoriteArticles">
         <Text
           style={{ fontSize: hp(3.8), marginTop: hp(4), marginLeft: 20 }}
           className="font-semibold text-neutral-600"
@@ -54,41 +54,9 @@ export default function FavoriteArticleScreen() {
           My Favorite Articles
         </Text>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={{
-          backgroundColor: "#2563EB",
-          padding: 10,
-          borderRadius: 5,
-          marginTop: 10,
-          width: 100,
-          alignItems: "center",
-          marginLeft: 20,
-        }}
-      >
-        <Text style={{ color: "#fff" }}>Go back</Text>
-      </TouchableOpacity>
-      <FlatList
-        data={favoriteArticlesList}
-        contentContainerStyle={styles.listContentContainer}
-        keyExtractor={(item) => item.idArticle} // Update the key according to your article data
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.cardContainer}
-            onPress={() => navigation.navigate("ArticleDetail", item)} // Navigate to the article detail screen
-          >
-            <Image
-              source={{ uri: item.thumbnail }} // Assuming your articles have a thumbnail field
-              style={styles.articleImage}
-            />
-            <Text style={styles.articleTitle}>
-              {item.title.length > 20
-                ? `${item.title.slice(0, 20)}...`
-                : item.title}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
+    
+     
+     
     </>
   );
 }

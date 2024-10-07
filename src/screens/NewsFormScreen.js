@@ -1,219 +1,18 @@
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   TouchableOpacity,
-//   Image,
-//   StyleSheet,
-// } from "react-native";
-// import React, { useState, useEffect } from "react";
-// import * as ImagePicker from "expo-image-picker";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import {
-//   widthPercentageToDP as wp,
-//   heightPercentageToDP as hp,
-// } from "react-native-responsive-screen";
-
-// export default function CustomRecipeFormScreen({ route, navigation }) {
-//   const { recipeToEdit, recipeIndex, onRecipeEdited } = route.params || {};
-
-//   const [foodName, setFoodName] = useState(
-//     recipeToEdit ? recipeToEdit.foodName : ""
-//   );
-//   const [image, setImage] = useState(recipeToEdit ? recipeToEdit.image : null);
-//   const [ingredients, setIngredients] = useState(
-//     recipeToEdit ? recipeToEdit.ingredients : ""
-//   );
-//   const [instructions, setInstructions] = useState(
-//     recipeToEdit ? recipeToEdit.instructions : ""
-//   );
-
-//   const pickImage = async () => {
-//     // Request permission to access the media library
-//     const permissionResult =
-//       await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-//     if (!permissionResult.granted) {
-//       alert("Permission to access the media library is required!");
-//       return;
-//     }
-
-//     // Launch the image picker
-//     let result = await ImagePicker.launchImageLibraryAsync({
-//       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-//       allowsEditing: true,
-//       aspect: [4, 3],
-//       quality: 1,
-//     });
-
-//     if (!result.canceled) {
-//       setImage(result.assets[0].uri); // Set the image URI
-//     }
-//   };
-
-//   const saveRecipe = async () => {
-//     const newRecipe = { foodName, image, ingredients, instructions };
-//     try {
-//       const existingRecipes = await AsyncStorage.getItem("customRecipes");
-//       const recipes = existingRecipes ? JSON.parse(existingRecipes) : [];
-
-//       if (recipeToEdit !== undefined) {
-//         // Update existing recipe
-//         recipes[recipeIndex] = newRecipe;
-//         await AsyncStorage.setItem("customRecipes", JSON.stringify(recipes));
-//         if (onRecipeEdited) onRecipeEdited();
-//       } else {
-//         // Add new recipe
-//         recipes.push(newRecipe);
-//         await AsyncStorage.setItem("customRecipes", JSON.stringify(recipes));
-//       }
-
-//       navigation.goBack();
-//     } catch (error) {
-//       console.error("Failed to save the recipe.", error);
-//     }
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <TextInput
-//         placeholder="Food Name"
-//         value={foodName}
-//         onChangeText={setFoodName}
-//         style={styles.input}
-//       />
-//       <TouchableOpacity onPress={pickImage}>
-//         <View style={styles.imageContainer}>
-//           {image ? (
-//             <Image source={{ uri: image }} style={styles.image} />
-//           ) : (
-//             <Text>Upload Image</Text>
-//           )}
-//         </View>
-//       </TouchableOpacity>
-//       <TextInput
-//         placeholder="Ingredients"
-//         value={ingredients}
-//         onChangeText={setIngredients}
-//         style={styles.input}
-//       />
-//       <TextInput
-//         placeholder="Instructions"
-//         value={instructions}
-//         onChangeText={setInstructions}
-//         style={styles.input}
-//       />
-//       <TouchableOpacity onPress={saveRecipe} style={styles.saveButton}>
-//         <Text style={styles.saveButtonText}>Save Recipe</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: wp(4),
-//   },
-//   input: {
-//     marginTop: hp(4),
-//     borderWidth: 1,
-//     borderColor: "#ddd",
-//     padding: wp(2),
-//     marginVertical: hp(1),
-//   },
-//   imageContainer: {
-//     borderWidth: 1,
-//     borderColor: "#ddd",
-//     height: hp(20),
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginVertical: hp(1),
-//   },
-//   image: {
-//     width: wp(100),
-//     height: hp(20),
-//     margin: wp(2),
-//   },
-//   saveButton: {
-//     backgroundColor: "#f59e0b",
-//     padding: wp(2),
-//     alignItems: "center",
-//     borderRadius: 5,
-//     marginTop: hp(2),
-//   },
-//   saveButtonText: {
-//     color: "#fff",
-//     fontWeight: "bold",
-//   },
-// });
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View,Text,TextInput,TouchableOpacity,Image,StyleSheet,} from "react-native";
 import React, { useState } from "react";
-import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp,heightPercentageToDP as hp,} from "react-native-responsive-screen";
 
 export default function NewsFormScreen({ route, navigation }) {
   const { articleToEdit, articleIndex, onArticleEdited } = route.params || {};
-
   const [title, setTitle] = useState(articleToEdit ? articleToEdit.title : "");
-  const [image, setImage] = useState(
-    articleToEdit ? articleToEdit.image : null
-  );
+  const [image, setImage] = useState(articleToEdit ? articleToEdit.image : "");
   const [description, setDescription] = useState(
     articleToEdit ? articleToEdit.description : ""
   );
 
-  const pickImage = async () => {
-    const permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (!permissionResult.granted) {
-      alert("Permission to access the media library is required!");
-      return;
-    }
-
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
-  };
-
   const saveArticle = async () => {
-    const newArticle = { title, image, description };
-    try {
-      const existingArticles = await AsyncStorage.getItem("customArticles");
-      const articles = existingArticles ? JSON.parse(existingArticles) : [];
-
-      if (articleToEdit !== undefined) {
-        articles[articleIndex] = newArticle;
-        await AsyncStorage.setItem("customArticles", JSON.stringify(articles));
-        if (onArticleEdited) onArticleEdited();
-      } else {
-        articles.push(newArticle);
-        await AsyncStorage.setItem("customArticles", JSON.stringify(articles));
-      }
-
-      navigation.goBack();
-    } catch (error) {
-      console.error("Failed to save the article.", error);
-    }
+    
   };
 
   return (
@@ -224,15 +23,17 @@ export default function NewsFormScreen({ route, navigation }) {
         onChangeText={setTitle}
         style={styles.input}
       />
-      <TouchableOpacity onPress={pickImage}>
-        <View style={styles.imageContainer}>
-          {image ? (
-            <Image source={{ uri: image }} style={styles.image} />
-          ) : (
-            <Text>Upload Image</Text>
-          )}
-        </View>
-      </TouchableOpacity>
+      <TextInput
+        placeholder="Image URL"
+        value={image}
+        onChangeText={setImage}
+        style={styles.input}
+      />
+      {image ? (
+        <Image source={{ uri: image }} style={styles.image} />
+      ) : (
+        <Text style={styles.imagePlaceholder}>Upload Image URL</Text>
+      )}
       <TextInput
         placeholder="Description"
         value={description}
@@ -257,25 +58,27 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
     borderWidth: 1,
     borderColor: "#ddd",
-    padding: wp(2),
+    padding: wp(.5),
     marginVertical: hp(1),
   },
-  imageContainer: {
-    borderWidth: 1,
-    borderColor: "#ddd",
+  image: {
+    width: 400,
+    height:300,
+    margin: wp(2),
+  },
+  imagePlaceholder: {
     height: hp(20),
     justifyContent: "center",
     alignItems: "center",
     marginVertical: hp(1),
-  },
-  image: {
-    width: wp(100),
-    height: hp(20),
-    margin: wp(2),
+    borderWidth: 1,
+    borderColor: "#ddd",
+    textAlign: "center",
+    padding: wp(2),
   },
   saveButton: {
     backgroundColor: "#4F75FF",
-    padding: wp(2),
+    padding: wp(.5),
     alignItems: "center",
     borderRadius: 5,
     marginTop: hp(2),

@@ -1,5 +1,6 @@
 import {View,Text,ScrollView,TouchableOpacity,Image,StyleSheet,} from "react-native";
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -33,11 +34,15 @@ export default function ArticleDetailScreen(props) {
     >
       {/* Article Image */}
       <View style={styles.imageContainer} testID="imageContainer">
-         
+                      {/* need to remove */}
+
+       
       </View>
 
       {/* Back Button and Favorite Button */}
-                 
+                    {/* need to remove */}
+
+
 
       {/* Article Description */}
   
@@ -48,12 +53,11 @@ export default function ArticleDetailScreen(props) {
             testID="articleDetailsContainer"
           >
             <Text style={styles.articleTitle} testID="articleTitle">
-         
-             
+              {/* need to remove */}
               
               </Text>
             <Text style={styles.articleCategory} testID="articleCategory">
-                         
+                            {/* need to remove */}
               </Text>
           </View>
 
@@ -63,7 +67,8 @@ export default function ArticleDetailScreen(props) {
             style={styles.sectionContainer}
             testID="sectionContainer"
           >
-          
+                          {/* need to remove */}
+
           </View>
         </View>
     </ScrollView>
