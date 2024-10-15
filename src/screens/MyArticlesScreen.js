@@ -29,6 +29,7 @@ export default function MyArticlesScreen() {
   }, []);
 
   const handleAddArticle = () => {
+    navigation.navigate("NewsFormScreen");
   };
 
   const handleArticleClick = (article) => {

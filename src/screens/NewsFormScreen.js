@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     marginVertical: hp(1),
   },
   image: {
-    width: 400,
-    height:300,
+    width: 200,
+    height:150,
     margin: wp(2),
   },
   imagePlaceholder: {
