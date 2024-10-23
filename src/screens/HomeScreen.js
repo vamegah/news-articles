@@ -10,7 +10,7 @@ import Categories from "../components/categories";
 import Articles from "../components/articles";
 
 export default function HomeScreen() {
-  const [activeCategory, setActiveCategory] = useState("Chicken");
+  const [activeCategory, setActiveCategory] = useState("Technology");
 
   // Hardcoded categories for news
   const [categories, setCategories] = useState([
